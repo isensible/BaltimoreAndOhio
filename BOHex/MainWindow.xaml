@@ -1,0 +1,23 @@
+﻿<Window x:Class="BOHex.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:boHex="clr-namespace:BOHex"
+        Title="MainWindow" Height="350" Width="525"
+        Style="{StaticResource GradientWindowStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <boHex:Map Grid.Row="1" DataContext="{Binding MapViewModel}"></boHex:Map>
+        
+        <!--<DockPanel Grid.Row="2" LastChildFill="False">
+            --><!--<controls:HexGameStatus DockPanel.Dock="Left" DataContext="{Binding HexBoard}" />
+            <Button DockPanel.Dock="Right" Margin="2" Padding="8,2,8,2" Command="{Binding ComputerMoveCommand}" CommandParameter="{Binding}">Computer Move</Button>
+            <Button DockPanel.Dock="Right" Margin="2" Padding="8,2,8,2" Command="{Binding ClearCommand}" CommandParameter="{Binding}">Clear</Button>
+            <Button DockPanel.Dock="Right" Margin="2" Padding="8,2,8,2" Command="{Binding ShowDebugBoardCommand}" CommandParameter="{Binding}">Debug</Button>--><!--
+        </DockPanel>-->
+    </Grid>
+</Window>
