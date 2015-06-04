@@ -152,6 +152,8 @@ namespace BOA.Domain
         }
 
 
+        // USE SAGAS!
+
         // game commands:
         // new game:
         // > include Ed
@@ -160,10 +162,10 @@ namespace BOA.Domain
         // > abandon
         // > order Ed Fred Hannah
         // market round:
-        // Ed> start 3 B&O at 60
-        // Fred> buy 3 B&O 1 orphan
-        // Hannah> sell 3 B&O 2 C&O
-        // Ed> buyback 2 C&O
+        // Ed> start B&O price=60 held=3;
+        // Fred> buy B&O held=2 orphan=1;
+        // Hannah> sell [B&O 3] [C&O 2];
+        // Ed> buyback C&O 2
         // Fred> pass
         // Hannah> pass
         // Ed> pass

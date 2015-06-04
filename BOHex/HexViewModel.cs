@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Media;
 
@@ -24,12 +25,15 @@ namespace BOHex
         private Brush _topRightLineBrush;
         private Brush _playerBrush;
         private PointCollection _points;
+        private Occupied _occupied;
+        private DebugData _debugData;
 
         public HexViewModel(Hex hex)
         {
             _hex = hex;
             _playerBrush = Brushes.Blue;
             _points = new PointCollection();
+           this.DebugData = new DebugData();
         }
 
         public override int GetHashCode()
@@ -130,19 +134,18 @@ namespace BOHex
 
         internal void EnterCell()
         {
-            this.PlayerBrush = Brushes.Brown;
+            //this.PlayerBrush = Brushes.Brown;
         }
 
         internal void LeaveCell()
         {
-            PlayerBrush = Brushes.BlueViolet;
+            //PlayerBrush = Brushes.BlueViolet;
         }
 
         internal void PlayCell()
         {
             PlayerBrush = Brushes.CadetBlue;
         }
-
 
         public int Q
         {
@@ -334,5 +337,50 @@ namespace BOHex
         public double HorizontalOffset { get; set; }
 
         public double CellSideDisplayLength { get; set; }
+
+        public DebugData DebugData
+        {
+            get { return _debugData; }
+            set { _debugData = value; }
+        }
+
+        public Occupied Occupied
+        {
+            get { return _occupied; }
+            set
+            {
+                _occupied = value;
+                this.OnPropertyChanged("Occupied");
+            }
+        }
+    }
+
+    public class DebugData : BaseViewModel
+    {
+        private string _moveForPlayerXText;
+        private string _moveForPlayerYText;
+
+        public DebugData()
+        {
+            _moveForPlayerXText = "X";
+            _moveForPlayerYText = "Y";
+        }
+
+        public bool IsMoveForPlayerX { get; set; }
+        public bool IsMoveForPlayerY { get; set; }
+        public bool OnShortestPathForPlayerX { get; set; }
+        public bool OnShortestPathForPlayerY { get; set; }
+
+        public string MoveForPlayerXText
+        {
+            get { return _moveForPlayerXText; }
+            set { _moveForPlayerXText = value; OnPropertyChanged("MoveForPlayerXText"); }
+        }
+
+        public string MoveForPlayerYText
+        {
+            get { return _moveForPlayerYText; }
+            set { _moveForPlayerYText = value; OnPropertyChanged("MoveForPlayerYText"); }
+        }
     }
 }

@@ -1,0 +1,143 @@
+Player
++ symbol
++ cash
++ foregroundColor
++ backgroundColor
+
+ 
+
+Railroad
++ symbol
++ name
++ foregroundColor
++ backgroundColor
++ cash
++ stockPrice
++ whenStockPriceChanged
++ lastGrossProfit
++ lastMaintenanceCosts
++ lastNetProfit
++ stockCertificates
++ cubes
++ available
+
+ 
+
+StockCertificate
++ serialNumber
++ symbol
++ foregroundColor
++ backgroundColor
++ percentageValue
++ owner (company | bank | player)
+
+
+Bank
++ symbol
++ foregroundColor
++ backgroundColor
++ cash
+
+ 
+
+CapitalEquipment
++ serialNumber
++ purchasePrice
++ scrapPrice
++ technologyLevel
++ owner (bank | company | scrap)
+ 
+
+Location
++ symbol
++ foregroundColor
++ backgroundColor
++ name
++ buildPrice
++ profitFunction(techLevel) : int  [1|2|3|4|5|6]
++ resources (coal | timber)
++ residents
++ restrictions
+
+ 
+
+NaturalResource
++ symbol (coal | timber)
++ foregroundColor
++ backgroundColor
++ profitFunction(techLevel) : int
++ owner (bank | company)
++ available
+
+ 
+
+= Displays
+
+ 
+
+== Player
+
+| symbol | cash | certificates | stock | net worth |
+
+* certificates is # of stock certificates owned
+* stock is total value of all stock certificates held
+
+== Railroad
+
+         | market                                                         | business                                    |
+
+| symbol | value | rank | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10| cash | cubes | equipments | last net profit |
+
+* value is current stock price
+* rank is index of company in list of all companies sorted by value (desc) then by whenValueChanged
+* equipments is in-line list of serial-numbers for each capital equipment owned
+
+ 
+
+== Bank
+
+| next train # | next train cost | tech level |
+
+ 
+
+== Market
+
+                        | share prices per share count          |
+
+| symbol | value | rank | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10|
+
+== Business
+
+                               | payouts against share count           |
+
+| symbol | possible net profit | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10|
+
+
+
+
+== Useful notes
+
+== UX
+http://www.rr18xx.com/
+http://lodev.org/tmai/
+
+Sheldon as script shell and host of 'boalang' language.
+FParsec for boalang
+Retlang for pub-sub; CqrsLite for infrastructure; Events & Command published to retlang
+https://github.com/ekonbenefits/impromptu-interface for projecting Game state into ViewModel client interfaces
+
+== CQRS
+CQRSlite
+
+== WPF controls
+WpfBehaviours
+ReactiveTrader
+Hex Game
+HexagonGrid.cs
+http://www.codeproject.com/Articles/991634/Undo-Redo-Implemented-via-Stateless-Command-Stacks
+http://www.interact-sw.co.uk/iangblog/2008/06/10/visual-state
+
+== Command language
+http://binarysculpting.com/2012/03/13/introducing-piglet/
+http://www.codeproject.com/Articles/25069/JSBasic-A-BASIC-to-JavaScript-Compiler
+http://www.codeproject.com/Articles/26975/Writing-Your-First-Domain-Specific-Language-Part

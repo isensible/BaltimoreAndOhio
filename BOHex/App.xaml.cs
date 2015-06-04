@@ -17,7 +17,7 @@ namespace BOHex
 
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
-            var mapViewModel = new MapViewModel(10, 10);
+            var mapViewModel = new MapViewModel(22, 13);
 
             var mainWindowViewModel = new MainWindowViewModel(mapViewModel);
 

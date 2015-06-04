@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Media;
-using System.Windows.Media.TextFormatting;
 using CQRSlite.Commands;
 using CQRSlite.Domain;
 using CQRSlite.Messages;

@@ -99,16 +99,21 @@ namespace BOHex
 
         private void GoToStateForOcccupied()
         {
-            //if (this.ViewModel.Occupied == Occupied.Empty)
-            //{
-            //    VisualStateManager.GoToState(this, "Normal", true);
-            //}
-            //else
-            //{
-            //    VisualStateManager.GoToState(this, "Played", true);
-            //}
+            if (this.ViewModel.Occupied == Occupied.Empty)
+            {
+                VisualStateManager.GoToState(this, "Normal", true);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "Played", true);
+            }
         }
 
         
+    }
+
+    public enum Occupied
+    {
+        Empty, PlayerX, PlayerY
     }
 }

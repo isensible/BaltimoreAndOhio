@@ -24,19 +24,6 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <boHex:HexView />
-                    <!--<Viewbox x:Name="RootElement" Width="{Binding DisplayWidth}" Height="{Binding DisplayHeight}">
-                        <Grid>
-                            <Polygon Name="InsideHex" StrokeThickness="0" Fill="{Binding PlayerBrush}" Stretch="Uniform" Opacity="0"
-                                Points="{Binding Points}">
-                                <Polygon.RenderTransform>
-                                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" CenterX="100" CenterY="86.6025" />
-                                </Polygon.RenderTransform>
-                            </Polygon>
-                            <Polygon Name="FocusPart" StrokeThickness="0" Stretch="Uniform" Fill="DarkGreen" Grid.ZIndex="1"
-                                Points="{Binding Points}" />
-
-                        </Grid>
-                    </Viewbox>-->
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
