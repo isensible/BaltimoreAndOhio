@@ -105,8 +105,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\HexCell.cs" />
+    <Compile Include="Controls\HexCellDrawingVisual.cs" />
+    <Compile Include="Controls\HexMapRender.cs" />
+    <Compile Include="Controls\HexMapVisuals.cs" />
+    <Compile Include="Controls\ItemPropertyChangedEventArgs.cs" />
+    <Compile Include="Controls\ItemPropertyChangedEventHandler.cs" />
+    <Compile Include="Controls\ObservableNotifiableCollection.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Handlers.cs" />
+    <Compile Include="Domain\lib.cs" />
     <Compile Include="Domain\NewGame.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -114,6 +122,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
