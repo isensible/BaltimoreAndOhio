@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CQRSlite">
-      <HintPath>..\packages\CqrsLite.0.3.4\lib\NET40\CQRSlite.dll</HintPath>
-    </Reference>
     <Reference Include="Irony">
       <HintPath>..\packages\Irony.0.9.0\lib\net45\Irony.dll</HintPath>
     </Reference>
@@ -105,13 +102,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\HexagonGeometry.cs" />
     <Compile Include="Controls\HexCell.cs" />
     <Compile Include="Controls\HexCellDrawingVisual.cs" />
-    <Compile Include="Controls\HexMapRender.cs" />
     <Compile Include="Controls\HexMapVisuals.cs" />
+    <Compile Include="Controls\IHex.cs" />
     <Compile Include="Controls\ItemPropertyChangedEventArgs.cs" />
     <Compile Include="Controls\ItemPropertyChangedEventHandler.cs" />
     <Compile Include="Controls\ObservableNotifiableCollection.cs" />
+    <Compile Include="Controls\RectangularPointyTopMap.cs" />
+    <Compile Include="Domain\AggregateRoot.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Handlers.cs" />
     <Compile Include="Domain\lib.cs" />

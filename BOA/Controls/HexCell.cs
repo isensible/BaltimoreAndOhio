@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using BOA.Annotations;
@@ -6,7 +7,7 @@ using BOA.Domain;
 
 namespace BOA.Controls
 {
-    public class HexCell : INotifyPropertyChanged
+    public class HexCell : INotifyPropertyChanged, IHex
     {
         private Hex _hex;
         private double _centerX;
@@ -14,6 +15,11 @@ namespace BOA.Controls
         private double _displayWidth;
         private double _displayHeight;
         private PointCollection _corners;
+
+        public HexCell(Hex hex)
+        {
+            _hex = hex;
+        }
 
         public Hex Hex
         {
@@ -88,6 +94,38 @@ namespace BOA.Controls
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public int Q
+        {
+            get { return _hex.q; }
+        }
+
+        public int R
+        {
+            get { return _hex.r; }
+        }
+
+        public int S
+        {
+            get { return _hex.s; }
+        }
+
+        public void SetPoints(Layout layout)
+        {
+            Corners = new PointCollection(Layout.PolygonCorners(layout, _hex).Select(c => new System.Windows.Point(c.x, c.y)));
+
+            var hexToPixel = Layout.HexToPixel(layout, _hex);
+
+            CenterX = hexToPixel.x;
+            CenterY = hexToPixel.y;
+
+            var offset0 = Layout.HexCornerOffset(layout, 0);
+            DisplayWidth = offset0.x * 2;
+            DisplayHeight = offset0.x * 2;
+
+            //DisplayWidth = HexagonGeometry.CellWidth(CellSideDisplayLength);
+            //DisplayHeight = HexagonGeometry.CellHeight(CellSideDisplayLength);
         }
     }
 }

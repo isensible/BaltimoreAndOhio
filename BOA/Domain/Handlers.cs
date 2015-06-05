@@ -1,12 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using CQRSlite.Commands;
-using CQRSlite.Domain;
-using CQRSlite.Messages;
 using Piglet.Lexer;
-using ReactiveUI;
 
 namespace BOA.Domain
 {
@@ -120,5 +115,16 @@ namespace BOA.Domain
         {
             throw new NotImplementedException();
         }
+    }
+
+    internal interface ISession
+    {
+        T Get<T>(Guid id, int expectedVersion);
+        void Commit();
+        void Add<T>(T aggregate);
+    }
+
+    internal interface ICommand
+    {
     }
 }

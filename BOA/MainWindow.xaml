@@ -2,15 +2,19 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:controls="clr-namespace:BOA.Controls"
                       Title="BOA"
-                      Height="350"
                       Width="525"
-                      GlowBrush="Purple"
+                      Height="350"
                       EnableDWMDropShadow="True"
+                      GlowBrush="Purple"
                       ResizeMode="CanResizeWithGrip"
-                      WindowTransitionsEnabled="False"
-                      WindowStartupLocation="CenterScreen">
-    <Grid>
-
-    </Grid>
+                      SizeChanged="MainWindow_OnSizeChanged"
+                      WindowStartupLocation="CenterScreen"
+                      WindowTransitionsEnabled="False">
+    <controls:HexMapVisuals x:Name="HexMapVisuals"
+                            Width="600"
+                            Height="400"
+                            Background="Beige"
+                            ItemsSource="{Binding HexCells}" />
 </Controls:MetroWindow>

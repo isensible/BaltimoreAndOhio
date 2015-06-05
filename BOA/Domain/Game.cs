@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Windows.Media;
-using CQRSlite.Domain;
-using CQRSlite.Events;
 using Irony.Parsing;
 using money;
 using Piglet.Lexer;
@@ -151,6 +148,9 @@ namespace BOA.Domain
             };
         }
 
+        public Guid Id { get; set; }
+        public SortedList<int, List<string>> StockChart { get; set; }
+
 
         // USE SAGAS!
 
@@ -185,6 +185,11 @@ namespace BOA.Domain
         public void CompanyStarted()
         {
             ApplyChange(new CompanyStarted());
+        }
+
+        private void ApplyChange(CompanyStarted companyStarted)
+        {
+            // todo: make this on AggregateRoot
         }
     }
 

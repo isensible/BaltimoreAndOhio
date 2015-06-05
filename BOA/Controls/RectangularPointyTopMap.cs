@@ -1,21 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BOHex
+namespace BOA.Controls
 {
-    public interface IHex
-    {
-        int Q { get; }
-        int R { get; }
-        int S { get; }
-    }
-
     public class RectangularPointyTopMap<T> where T : IHex
     {
         private readonly int _width;
         private readonly int _height;
-        private readonly HashSet<T> _set; 
+        private readonly HashSet<T> _set;
 
         public RectangularPointyTopMap(int width, int height, Func<int, int, int, T> createHex)
         {
@@ -46,7 +39,7 @@ namespace BOHex
         public T At(int q, int r)
         {
             var s = r >> 1;
-            
+
             return _set.First(h => h.Q == q && h.R == r && h.S == s);
         }
 

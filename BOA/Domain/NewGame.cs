@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Media;
-using CQRSlite.Commands;
-using CQRSlite.Domain;
-using CQRSlite.Messages;
 
 namespace BOA.Domain
 {
@@ -120,12 +118,13 @@ namespace BOA.Domain
             game.StockChart.Add(341, new List<string>());
             game.StockChart.Add(375, new List<string>());
 
-            var ll = new LinkedList<string>();
-            
-            
-
             _session.Add(game);
             _session.Commit();
         }
+    }
+
+    internal interface IHandler<T>
+    {
+        void Handle(T message);
     }
 }
