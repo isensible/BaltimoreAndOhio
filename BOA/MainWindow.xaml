@@ -3,6 +3,10 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:controls="clr-namespace:BOA.Controls"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:boa="clr-namespace:BOA"
+                      mc:Ignorable="d"
                       Title="BOA"
                       Width="525"
                       Height="350"
@@ -11,10 +15,13 @@
                       ResizeMode="CanResizeWithGrip"
                       SizeChanged="MainWindow_OnSizeChanged"
                       WindowStartupLocation="CenterScreen"
-                      WindowTransitionsEnabled="False">
-    <controls:HexMapVisuals x:Name="HexMapVisuals"
-                            Width="600"
-                            Height="400"
+                      WindowTransitionsEnabled="False" 
+                      d:DataContext="{d:DesignInstance boa:MainWindow}">
+    <Grid>
+        <controls:HexMapVisuals x:Name="HexMapVisuals"
+                            Width="500"
+                            Height="300"
                             Background="Beige"
                             ItemsSource="{Binding HexCells}" />
+    </Grid>
 </Controls:MetroWindow>
