@@ -8,26 +8,30 @@ namespace BOA
     public partial class MainWindow
     {
         private readonly RectangularPointyTopMap<HexCell> _map;
-        private readonly ObservableNotifiableCollection<HexCell> _cells = new ObservableNotifiableCollection<HexCell>();
-        
+        private NotifiableHexCellCollection _cells;
+        private const int MapWidth = 22;
+        private const int MapHeight = 13;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = this;
+            _cells = new NotifiableHexCellCollection(MapWidth, MapHeight);
 
-            _map = new RectangularPointyTopMap<HexCell>(22, 13, (q, r, s) => new HexCell(new Hex(q, r, s)));
-            foreach (var hex in _map.GetMapContent())
-                _cells.Add(hex);
+            DataContext = _cells;
         }
 
-        public ObservableNotifiableCollection<HexCell> HexCells { get { return _cells; } }
+        public NotifiableHexCellCollection HexCells
+        {
+            get { return _cells; }
+            set { _cells = value; }
+        }
 
         internal void SetActualBoardSize(Size newSize)
         {
-            var cellSideDisplayLength = HexagonGeometry.CalculateSideLength(22, 13, newSize.Width, newSize.Height);
-            var verticalOffset = HexagonGeometry.CalculateVerticalOffset(13, newSize.Height, cellSideDisplayLength);
-            var horizontalOffset = HexagonGeometry.CalculateHorizontalOffset(22, newSize.Width, cellSideDisplayLength);
+            var cellSideDisplayLength = HexagonGeometry.CalculateSideLength(MapWidth, MapHeight, newSize.Width, newSize.Height);
+            var verticalOffset = HexagonGeometry.CalculateVerticalOffset(MapHeight, newSize.Height, cellSideDisplayLength);
+            var horizontalOffset = HexagonGeometry.CalculateHorizontalOffset(MapWidth, newSize.Width, cellSideDisplayLength);
 
             var layout = new Layout(Layout.pointy, new HexPoint(cellSideDisplayLength, cellSideDisplayLength), new HexPoint(horizontalOffset, verticalOffset));
 

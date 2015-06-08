@@ -109,6 +109,7 @@
     <Compile Include="Controls\IHex.cs" />
     <Compile Include="Controls\ItemPropertyChangedEventArgs.cs" />
     <Compile Include="Controls\ItemPropertyChangedEventHandler.cs" />
+    <Compile Include="Controls\NotifiableHexCellCollection.cs" />
     <Compile Include="Controls\ObservableNotifiableCollection.cs" />
     <Compile Include="Controls\RectangularPointyTopMap.cs" />
     <Compile Include="Domain\AggregateRoot.cs" />
