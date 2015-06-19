@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace BOA.Controls
 
         public static readonly DependencyProperty BackgroundProperty =
             Panel.BackgroundProperty.AddOwner(typeof(HexMapVisuals));
-        
+
         public HexMapVisuals()
         {
             _visualChildren = new VisualCollection(this);
@@ -83,27 +84,28 @@ namespace BOA.Controls
             foreach (var hexCell in hexCells.Cast<HexCell>())
             {
                 var hexCellDrawingVisual = new HexCellDrawingVisual { HexCell = hexCell };
-                
-                var drawingContext = hexCellDrawingVisual.RenderOpen();
 
-                var cornersArray = hexCell.Corners.ToArray();
-                var pathFigures = hexCell.Corners.Select((corner, index) =>
+                using (var drawingContext = hexCellDrawingVisual.RenderOpen())
                 {
-                    var nextCorner = cornersArray[index < (cornersArray.Length - 1) ? index :  0];
-                    var lineSegment = new LineSegment(new Point(nextCorner.X, nextCorner.Y), false);
-                    return new PathFigure(new Point(corner.X, corner.Y), new[] {lineSegment}, true);
-                });
+                    var cornersArray = hexCell.Corners.ToArray();
+                    var pathFigures = hexCell.Corners.Select((corner, index) =>
+                    {
+                        var nextCorner = cornersArray[index < (cornersArray.Length - 1) ? index : 0];
+                        var lineSegment = new LineSegment(new Point(nextCorner.X, nextCorner.Y), false);
+                        return new PathFigure(new Point(corner.X, corner.Y), new[] {lineSegment}, true);
+                    });
 
-                drawingContext.DrawGeometry(
-                    Brushes.DarkOliveGreen,
-                    new Pen(Brushes.Black, 3.0),
-                    new PathGeometry(pathFigures));
+                    drawingContext.DrawGeometry(
+                        Brushes.DarkOliveGreen,
+                        new Pen(Brushes.Black, 3.0),
+                        new PathGeometry(pathFigures));
 
-                hexCellDrawingVisual.Transform = new TranslateTransform(
-                    RenderSize.Width * hexCell.CenterX,
-                    RenderSize.Height * hexCell.CenterY);
+                    drawingContext.DrawEllipse(Brushes.DarkMagenta, null, new Point(hexCell.CenterX, hexCell.CenterY), 1, 1);
 
-                drawingContext.Close();
+                    hexCellDrawingVisual.Transform = new TranslateTransform(
+                        RenderSize.Width*hexCell.CenterX,
+                        RenderSize.Height*hexCell.CenterY);
+                }
 
                 _visualChildren.Add(hexCellDrawingVisual);
             }
