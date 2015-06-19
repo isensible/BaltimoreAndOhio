@@ -1,6 +1,6 @@
 ﻿namespace BOA.Domain
 {
-    public class AggregateRoot
+    internal interface ICommand
     {
     }
 }

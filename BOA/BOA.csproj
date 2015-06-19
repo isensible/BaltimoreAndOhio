@@ -102,6 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="Controls\HexagonGeometry.cs" />
     <Compile Include="Controls\HexCell.cs" />
     <Compile Include="Controls\HexCellDrawingVisual.cs" />
@@ -113,8 +114,13 @@
     <Compile Include="Controls\ObservableNotifiableCollection.cs" />
     <Compile Include="Controls\RectangularPointyTopMap.cs" />
     <Compile Include="Domain\AggregateRoot.cs" />
+    <Compile Include="Domain\EventContext.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Handlers.cs" />
+    <Compile Include="Domain\ICommand.cs" />
+    <Compile Include="Domain\ICommandSender.cs" />
+    <Compile Include="Domain\IEvent.cs" />
+    <Compile Include="Domain\IEventPublisher.cs" />
     <Compile Include="Domain\lib.cs" />
     <Compile Include="Domain\NewGame.cs" />
     <Compile Include="Domain\PublishContext.cs" />
@@ -124,6 +130,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -154,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="design.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZoomableCanvas\ZoomableCanvas.csproj">
+      <Project>{9a252b25-4c11-4bbf-8c46-72283a44ca39}</Project>
+      <Name>ZoomableCanvas</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,5 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using BOA.Controls;
 using BOA.Domain;
 
@@ -11,14 +15,16 @@ namespace BOA
         private NotifiableHexCellCollection _cells;
         private const int MapWidth = 22;
         private const int MapHeight = 13;
+        private ZoomableCanvas _zoomableCanvas;
+
+        public Point LastMousePosition { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
             _cells = new NotifiableHexCellCollection(MapWidth, MapHeight);
-
-            DataContext = _cells;
+            MyListBox.ItemsSource = _cells.HexCells;
         }
 
         public NotifiableHexCellCollection HexCells
@@ -47,6 +53,46 @@ namespace BOA
         private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             SetActualBoardSize(e.NewSize);
+        }
+
+        private void ZoomableCanvas_Loaded(object sender, RoutedEventArgs e)
+        {
+            _zoomableCanvas = (ZoomableCanvas) sender;
+            //DataContext = _zoomableCanvas;
+        }
+
+        protected override void OnPreviewMouseMove(MouseEventArgs e)
+        {
+            var position = e.GetPosition(MyListBox);
+            if (e.LeftButton == MouseButtonState.Pressed
+                && !(e.OriginalSource is Thumb)) // Don't block the scrollbars.
+            {
+                CaptureMouse();
+                _zoomableCanvas.Offset -= position - LastMousePosition;
+                e.Handled = true;
+            }
+            else
+            {
+                ReleaseMouseCapture();
+            }
+            LastMousePosition = position;
+        }
+
+        protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
+        {
+            var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
+            _zoomableCanvas.Scale *= x;
+
+            // Adjust the offset to make the point under the mouse stay still.
+            var position = (Vector)e.GetPosition(MyListBox);
+            _zoomableCanvas.Offset = (Point)((Vector)
+                (_zoomableCanvas.Offset + position) * x - position);
+
+            e.Handled = true;
+        }
+
+        private void MySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
         }
     }
 }

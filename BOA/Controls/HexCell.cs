@@ -111,6 +111,11 @@ namespace BOA.Controls
             get { return _hex.s; }
         }
 
+        public string Label
+        {
+            get { return string.Format("{0},{1}", Q, R); }
+        }
+
         public void SetPoints(Layout layout)
         {
             Corners = new PointCollection(Layout.PolygonCorners(layout, _hex).Select(c => new System.Windows.Point(c.x, c.y)));

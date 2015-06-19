@@ -123,8 +123,4 @@ namespace BOA.Domain
         void Commit();
         void Add<T>(T aggregate);
     }
-
-    internal interface ICommand
-    {
-    }
 }

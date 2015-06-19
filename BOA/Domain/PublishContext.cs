@@ -7,24 +7,4 @@
             
         }
     }
-
-    internal interface ICommandSender
-    {
-    }
-
-    class EventContext : IEventPublisher
-    {
-        public void Publish<T>(T @event) where T : IEvent
-        {
-            
-        }
-    }
-
-    internal interface IEvent
-    {
-    }
-
-    internal interface IEventPublisher
-    {
-    }
 }
